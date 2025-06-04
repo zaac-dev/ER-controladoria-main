@@ -453,9 +453,14 @@
         </div>
       </div>
     
-    <section id="contato">
+<section id="contato">
         <h1>Formulario de contato</h1>
-        <form method="POST" action="https://formsubmit.co/contato@ercontroladoriaestrategica.com.br" enctype="multipart/form-data" class="form">
+        <form id="contactForm" method="POST" action="https://formsubmit.co/contato@ercontroladoriaestrategica.com.br" enctype="multipart/form-data" class="form">
+            <!-- Campo oculto para redirecionar para a própria página -->
+            <input type="hidden" name="_next" value="">
+            <!-- Campo oculto para desabilitar captcha -->
+            <input type="hidden" name="_captcha" value="false">
+            
             <label for="name">Nome</label>
             <input type="text" name="name" id="name" placeholder="Digite seu nome" required>
 
@@ -465,10 +470,19 @@
             <label for="message">Mensagem</label>
             <textarea name="message" id="message" placeholder="Como podemos ajudar?"></textarea>
     
-            
-            <button type="submit">Enviar</button>
+            <button type="submit" id="submitBtn">
+                Enviar
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                </div>
+            </button>
         </form>
     </section>
+
+    <!-- Tela de sucesso (oculta) -->
+    <div class="success-screen" id="successScreen">
+        <h2>Obrigado, a sua mensagem foi enviada com sucesso retornamos em breve</h2>
+    </div>
 
 
 <footer class="footer">

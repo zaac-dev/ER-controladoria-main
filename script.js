@@ -89,28 +89,66 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar slider
     initSlider();
 
-    // Função para fechar a janela/aba após 10 segundos
-setTimeout(function() {
-    // Adiciona efeito de fade out
-    document.body.classList.add('fade-out');
-    
-    // Aguarda a animação terminar e então fecha
-    setTimeout(function() {
-        // Tenta fechar a janela atual
-        window.close();
-        
-        // Se não conseguir fechar (por questões de segurança do navegador),
-        // redireciona para uma página em branco ou volta para a página anterior
-        setTimeout(function() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.location.href = 'about:blank';
-            }
-        }, 100);
-    }, 1000); // Aguarda 1 segundo para o fade out completar
-}, 10000); // 10 segundos
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const loading = document.getElementById('loading');
+    const successScreen = document.getElementById('successScreen');
 
+    // Define a URL atual para o campo _next (redireciona para a mesma página)
+    const nextInput = document.querySelector('input[name="_next"]');
+    nextInput.value = window.location.href;
+
+    // Verifica se existe parâmetro de sucesso na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        showSuccessMessage();
+    }
+
+    form.addEventListener('submit', function(e) {
+        // Mostra loading
+        submitBtn.disabled = true;
+        loading.style.display = 'inline-block';
+        submitBtn.textContent = 'Enviando...';
+
+        // Adiciona parâmetro de sucesso à URL de retorno
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('success', 'true');
+        nextInput.value = currentUrl.toString();
+
+        // O formulário será enviado normalmente
+        // Quando retornar, a página detectará o parâmetro e mostrará a mensagem
+    });
+
+    function showSuccessMessage() {
+        // Remove o parâmetro da URL sem recarregar
+        const url = new URL(window.location.href);
+        url.searchParams.delete('success');
+        window.history.replaceState({}, document.title, url.toString());
+
+        // Mostra a tela de sucesso
+        successScreen.classList.add('show');
+        
+        // Função para fechar após 10 segundos
+        setTimeout(function() {
+            successScreen.classList.add('fade-out');
+            
+            setTimeout(function() {
+                window.close();
+                
+                setTimeout(function() {
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        // Volta para o formulário limpo
+                        successScreen.classList.remove('show', 'fade-out');
+                        form.reset();
+                    }
+                }, 100);
+            }, 1000);
+        }, 10000);
+    }
+});
     // Debug
     console.log('Script carregado com sucesso');
     console.log('Elementos encontrados:');
