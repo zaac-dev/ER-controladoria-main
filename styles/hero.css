@@ -99,14 +99,14 @@
                 left: -7rem;
                 width: 32rem;
                 height: 78rem;
-                top: -20rem;
+                top: -19rem;
             }
 
             & img:last-child {
                 right: -6rem;
                 width: 30rem;
                 height: 66rem;
-                top: -14rem;
+                top: -12.5rem;
             }
         }
 
