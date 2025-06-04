@@ -98,15 +98,15 @@
             & img:first-child {
                 left: -7rem;
                 width: 32rem;
-                height: 76rem;
-                top: -16rem;
+                height: 78rem;
+                top: -19rem;
             }
 
             & img:last-child {
                 right: -6rem;
                 width: 30rem;
                 height: 66rem;
-                top: -14rem;
+                top: -12.5rem;
             }
         }
 
@@ -136,7 +136,7 @@
                 
                 & h1 {
                     margin-top: -1rem;
-                    /*font-size: 1.6rem;*/
+                    font-size: 2.2rem;
                     line-height: 1.2;
                 }
                 
@@ -144,7 +144,7 @@
                     display: flex;
                     margin: 0 auto;
                     justify-content: center;
-                    /*font-size: 1.4rem;*/
+                    font-size: 1.8rem;
                     align-items: center;
                     text-align: center;
                     width: 100%;
