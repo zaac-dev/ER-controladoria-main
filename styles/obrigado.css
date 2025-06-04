@@ -5,7 +5,7 @@ h2 {
     line-height: 1.4;
     max-width: 800px;
     font-weight: 600;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    
 }
 
 /* Animação de fade out */
@@ -16,9 +16,7 @@ h2 {
 
 /* Responsividade para tablets */
 @media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
+
     
     h2 {
         font-size: clamp(1.3rem, 5vw, 2rem);
@@ -27,10 +25,7 @@ h2 {
 
 /* Responsividade para celulares */
 @media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-    
+
     h2 {
         font-size: clamp(1.1rem, 6vw, 1.8rem);
         line-height: 1.3;

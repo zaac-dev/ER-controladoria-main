@@ -67,10 +67,20 @@
     
     .rolling {
         gap: 3rem;
+        animation: scroll 30s linear infinite;
     }
     
     .rolling img {
         width: 12rem;
         height: 12rem;
     }
+
+    @keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-418%);
+    }
+}
 }

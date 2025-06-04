@@ -23,7 +23,8 @@
 
 
 body {
-    background-color: rgb(204, 196, 187);
+    background-color: var(--bg-color);
+    font-size: 1.6rem;
     overflow-x: hidden;
 }
 
