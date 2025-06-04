@@ -29,14 +29,14 @@
     display: flex;
     gap: 5.5rem;
     will-change: transform;
-    animation: scroll 10s linear infinite;
+    animation: scroll 20s linear infinite;
     
     
 }
 
 .rolling img {
-    width: 10rem;
-    height: 10rem;
+    width: 12rem;
+    height: 12rem;
     object-fit: contain;
     flex-shrink: 0;
     border-radius: 8px;
@@ -44,13 +44,13 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     
 }
-
+/*ajustar aqui*/
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translateX(-186.5%);
     }
 }
 
@@ -70,7 +70,7 @@
     }
     
     .rolling img {
-        width: 8rem;
-        height: 8rem;
+        width: 12rem;
+        height: 12rem;
     }
 }

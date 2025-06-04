@@ -89,6 +89,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar slider
     initSlider();
 
+    // Função para fechar a janela/aba após 10 segundos
+setTimeout(function() {
+    // Adiciona efeito de fade out
+    document.body.classList.add('fade-out');
+    
+    // Aguarda a animação terminar e então fecha
+    setTimeout(function() {
+        // Tenta fechar a janela atual
+        window.close();
+        
+        // Se não conseguir fechar (por questões de segurança do navegador),
+        // redireciona para uma página em branco ou volta para a página anterior
+        setTimeout(function() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'about:blank';
+            }
+        }, 100);
+    }, 1000); // Aguarda 1 segundo para o fade out completar
+}, 10000); // 10 segundos
+
     // Debug
     console.log('Script carregado com sucesso');
     console.log('Elementos encontrados:');
