@@ -1,0 +1,195 @@
+    header {
+    padding-inline: 16px;
+    background-color: var(--bg-color);
+    & .nav {
+        max-width: 1280px;
+        height: 70px;
+        margin-inline: auto;
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        & .hamburger {
+                display: none;
+                border: none;
+                background: none;
+                border-top: 3px solid #fff;
+                cursor: pointer;
+        }
+
+        & .navlogo {
+            display: none;
+        }
+
+    & .hamburger::after,
+    .hamburger::before {
+        content: " ";
+        display: block;
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin-top: 5px;
+        position: relative;
+        transition: 0.3s;
+    }
+
+    & .nav-list {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+        margin-inline: auto;
+    }
+        & a {
+            width: 5rem;
+            text-decoration: none;
+            letter-spacing: 3px;
+            padding-inline: 1rem;
+            position: relative;
+            height: 3.5em;
+            border: 1px ridge #daa520;
+            outline: none;
+            background-color: transparent;
+            color: white;
+            transition: 1s;
+            border-radius: .8rem;
+            font-size: 1.8rem;
+            
+    }
+
+    & a::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 3%;
+        width: 95%;
+        height: 40%;
+        background-color: var(--bg-color);
+        transition: 0.5s;
+        transform-origin: center;
+    }
+& a::before {
+        content: "";
+        transform-origin: center;
+        position: absolute;
+        top: 80%;
+        left: 3%;
+        width: 95%;
+        height: 40%;
+        background-color: var(--bg-color);
+        transition: 0.5s;
+    }
+
+    & a:hover::before, a:hover::after {
+        transform: scale(0)
+    }
+
+    & a:hover {
+        box-shadow: inset 0px 0px 25px #daa520;
+    }
+
+    }
+
+@media (max-width: 750px) {
+    .nav {
+        & .hamburger {
+            display: block;
+            z-index: 1001;
+            
+        }
+
+        & .navlogo {
+            display: block;
+            width: 7rem;
+        }
+        & a::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 3%;
+            width: 95%;
+            height: 30%;
+            background-color: var(--bg-header);
+            transition: 0.5s;
+            transform-origin: center;
+            
+        }
+    & a::before {
+            content: "";
+            transform-origin: center;
+            position: absolute;
+            top: 80%;
+            left: 3%;
+            width: 95%;
+            height: 30%;
+            background-color: var(--bg-header);
+            transition: 0.5s;
+        }
+
+        & .nav-list {
+            
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-header);
+            clip-path: circle(100px at 90% -15%);
+            transition: 1s ease-out;
+            z-index: 1000;
+        
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            gap: 0;
+        
+            pointer-events: none;
+
+            & a {
+                font-size: 24px;
+                opacity: 0;
+        }
+    }
+}
+
+.nav-list li:nth-child(1) a {
+    transition: 0.5s 0.2s;
+    }
+
+.nav-list li:nth-child(2) a {
+    transition: 0.5s 0.4s;
+    }
+
+.nav-list li:nth-child(3) a {
+    transition: 0.5s 0.6s;
+    }
+
+
+.nav.active .nav-list {
+    clip-path: circle(1500px at 90% -15%);
+    pointer-events: all;
+    }
+
+.nav.active .nav-list a {
+    opacity: 1;
+    }
+
+.nav.active .hamburger {
+    position: fixed;
+    top: 26px;
+    right: 16px;
+    border-top-color: transparent;
+}
+
+.nav.active .hamburger::before {
+    transform: rotate(135deg);
+}
+
+.nav.active .hamburger::after {
+    transform: rotate(-135deg);
+    top: -7px;
+    }
+}
+}

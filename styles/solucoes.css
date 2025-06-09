@@ -1,0 +1,220 @@
+#solucoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    background-color: rgb(204, 196, 187);
+    padding-bottom: 2rem;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    font-size: 4rem;
+    border-bottom: 1px solid var(--color-h1);
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 4rem; 
+    width: 80%;
+    justify-content: center;
+}
+
+.card {
+    width: 35rem; 
+    height: 40rem;
+    background-color: #074468fa;
+    transition: all 0.4s;
+    border-radius: 2rem;
+    border: 1px solid #daa520;
+    font-size: 2rem;
+    font-weight: 900;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: white;
+}
+
+.card:hover {
+    color: black;
+    border-radius: 15px;
+    cursor: pointer;
+    transform: scale(1.05);
+    background: rgb(103, 151, 255);
+    box-shadow: 0px 0px 20px #daa520;
+}
+
+.first-content {
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    opacity: 1;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.first-content span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+    gap: 1.5rem;
+}
+
+.first-content img {
+    width: 8rem;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.first-content h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.first-content p {
+    font-size: 1.4rem;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.8;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.first-content strong {
+    display: none;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #daa520;
+}
+
+.card:hover .first-content {
+    height: 0px;
+    opacity: 0;
+}
+
+.second-content {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    transition: all 0.4s;
+    font-size: 1.6rem;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.second-content span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.second-content p {
+    font-size: 1.4rem;
+    font-weight: 300;
+    text-align: left; 
+    margin: 0;
+    line-height: 2;
+}
+
+.card:hover .second-content {
+    opacity: 1;
+    font-size: 1.4rem;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        margin-top: 3rem;
+    }
+
+    .second-content p {
+        line-height: 2.2;
+    }
+    .cards-container {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+        width: 90%;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 35rem;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: none;
+        background-color: #074468fa;
+        color: white;
+    }
+
+    .card:hover .first-content {
+        height: 100%;
+        opacity: 1;
+    }
+
+    .card:hover .second-content {
+        opacity: 0;
+    }
+
+    .first-content strong {
+        display: block;
+        color: #daa520;
+        font-weight: bold;
+    }
+
+    /* Classes para controle via JavaScript */
+    .card.mobile-flipped .first-content {
+        opacity: 0;
+        height: 0;
+    }
+
+    .card.mobile-flipped .second-content {
+        opacity: 1;
+    }
+
+    .card.mobile-flipped .first-content strong {
+        display: none;
+    }
+}
