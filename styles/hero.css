@@ -21,7 +21,7 @@
 
 
         
-        img:first-child {
+       & img:first-child {
             position: absolute;
             left: -13rem;
             bottom: 0;
@@ -30,7 +30,7 @@
             object-fit: contain;
         }
 
-        img:last-child {
+        & img:last-child {
             position: absolute;
             right: -12rem;
             bottom: 0;
