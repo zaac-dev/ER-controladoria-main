@@ -10,14 +10,16 @@
 }
 
 #sobre h1 {
+    color: var(--bg-color);
     text-align: center;
     margin-bottom: 5rem;
     margin-top: 5rem;
     font-size: 4rem;
-    border-bottom: 1px solid var(--color-h1);
+    border-bottom: 1px solid var(--bg-color);
 }
 
 #sobre h2 {
+    color: var(--bg-color);
     text-align: center;
     margin: 1rem auto;
     font-size: clamp(1.6rem, 4vw, 2rem);

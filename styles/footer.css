@@ -53,6 +53,14 @@
     gap: 1rem;
 }
 
+a[href^="tel"],
+a[href^="mailto"] {
+  color: inherit;
+  text-decoration: none;
+  -webkit-text-fill-color: inherit;
+}
+
+
 .footer-section ul {
     list-style: none;
     padding: 0;
