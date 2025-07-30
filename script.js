@@ -70,7 +70,6 @@ window.onpopstate = function(event) {
     }
 };
 
-
 // ============= CARDS INTERATIVOS =============
 function isMobile() {
     return window.innerWidth <= 768;
@@ -82,45 +81,70 @@ function toggleCard(card) {
     }
 }
 
+function initCards() {
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        // Remove event listeners anteriores para evitar duplicação
+        card.removeEventListener('click', handleCardClick);
+        card.removeEventListener('touchstart', handleCardTouch);
+        
+        // Adiciona novos event listeners
+        card.addEventListener('click', handleCardClick);
+        card.addEventListener('touchstart', handleCardTouch, { passive: true });
+    });
+}
+
+function handleCardClick(event) {
+    if (isMobile()) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleCard(this);
+    }
+}
+
+function handleCardTouch(event) {
+    if (isMobile()) {
+        // Adiciona uma pequena vibração se disponível
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+        }
+    }
+}
+
 // ============= SLIDER INFINITO =============
 function initSlider() {
     const rolling = document.getElementById('rolling');
     if (rolling) {
+        // Clona todo o conteúdo para criar o efeito infinito
         const originalContent = rolling.innerHTML;
         rolling.innerHTML = originalContent + originalContent;
+        
+        // Adiciona classe para indicar que foi inicializado
+        rolling.classList.add('initialized');
     }
+}
+
+// ============= GERENCIAMENTO DE REDIMENSIONAMENTO =============
+function handleResize() {
+    const cards = document.querySelectorAll('.card');
+    
+    // Se mudou de mobile para desktop ou vice-versa, remove todas as classes mobile-flipped
+    cards.forEach(card => {
+        if (!isMobile()) {
+            card.classList.remove('mobile-flipped');
+        }
+    });
 }
 
 // ============= INICIALIZAÇÃO =============
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar cards
-    const cards = document.querySelectorAll('.card');
-    if (cards.length > 0) {
-        cards.forEach(card => {
-            card.addEventListener('click', function() {
-                toggleCard(this);
-            });
-        });
-
-        window.addEventListener('resize', function() {
-            if (!isMobile()) {
-                cards.forEach(card => {
-                    card.classList.remove('mobile-flipped');
-                });
-            }
-        });
-    }
-
-    // Inicializar slider
-    initSlider();
-
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const loading = document.getElementById('loading');
-    const successScreen = document.getElementById('successScreen');
-
-});
+    // Aguarda um frame para garantir que o DOM está totalmente carregado
+    requestAnimationFrame(() => {
+        initSlider();
+        initCards();
+    });
+    
     // Debug
     console.log('Script carregado com sucesso');
     console.log('Elementos encontrados:');
@@ -128,4 +152,20 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('- Nav:', document.querySelector('.nav') ? 'OK' : 'NÃO ENCONTRADO');
     console.log('- Cards:', document.querySelectorAll('.card').length + ' encontrados');
     console.log('- Rolling:', document.getElementById('rolling') ? 'OK' : 'NÃO ENCONTRADO');
+});
+
+// Gerencia redimensionamento da janela
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        handleResize();
+        
+        const rolling = document.getElementById('rolling');
+        if (rolling && rolling.classList.contains('initialized')) {
+            // Remove a classe e reinicializa se necessário
+            rolling.classList.remove('initialized');
+            initSlider();
+        }
+    }, 250);
 });

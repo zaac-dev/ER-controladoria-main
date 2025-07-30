@@ -2,100 +2,186 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: var(--bg-color);
-    width: 100%;
-    height: 100vh;
     background-color: rgb(204, 196, 187);
+    width: 100%;
+    padding: 2rem 1rem;
     z-index: 5;
 }
 
 #sobre h1 {
     color: var(--bg-color);
     text-align: center;
-    margin-bottom: 5rem;
-    margin-top: 5rem;
-    font-size: 4rem;
-    border-bottom: 1px solid var(--bg-color);
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 1rem;
 }
 
 #sobre h2 {
     color: var(--bg-color);
     text-align: center;
-    margin: 1rem auto;
-    font-size: clamp(1.6rem, 4vw, 2rem);
+    margin: 1rem auto 2rem;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    max-width: 90%;
+    line-height: 1.4;
 }
 
 .text-one {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 4rem;
-    padding: 2rem;
+    padding: 3rem 2rem;
     background-color: #074468fa;
-    border: 1px solid #daa520;
-    transition: all 0.4s;
-    border-radius: 3rem;
+    border: 2px solid #daa520;
+    transition: all 0.4s ease;
+    border-radius: 2rem;
     width: 90%;
-    height: 70%;
-    max-height: 70%;
-    overflow: auto; 
+    max-width: 1200px;
+    min-height: 60vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
+
+
 
 .text-one:hover {
-    box-shadow: 0px 0px 20px #daa520;
+    box-shadow: 0px 0px 25px #daa520, 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
-.text-one .desktop,
-.text-one .mobile {
-    max-width: 90%;
-    
+.text-content {
+    width: 100%;
+    max-width: 100%;
+    color: white;
+}
+
+.text-content .desktop,
+.text-content .mobile {
     font-weight: 300;
-    line-height: 1.5;
+    line-height: 1.8;
+    text-align: left;
+    word-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
+    max-width: 100%;
 }
 
-.text-one .desktop {
+.text-content .desktop {
     display: block;
-    font-size: clamp(1.8rem, 2vw, 2.2rem); 
-    margin: 2rem auto;
+    font-size: clamp(1.6rem, 2vw, 2rem);
 }
 
-
-.text-one .mobile {
+.text-content .mobile {
     display: none;
 }
 
+/* Estilo para os parágrafos individuais */
+.paragraph {
+    margin-bottom: 2rem;
+}
 
-@media (max-width: 750px) {
-    .text-one {
-        width: 85%;
-        max-height: 65%;
-    }
+.paragraph:last-child {
+    margin-bottom: 0;
+}
 
-    .text-one .desktop {
-        display: none;
-    }
+/* Estilos para títulos dos parágrafos */
+.paragraph-title {
+    color: #daa520;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+}
 
-    .text-one .mobile {
-        display: block;
-        font-size: clamp(2rem, 2vw, 2.4rem); 
-        line-height: 2.5rem;
-        max-width: 95%;
-        padding: 1rem;
+/* Estilos para o conteúdo dos parágrafos */
+.paragraph-content {
+    color: white;
+    font-weight: 300;
+}
+
+/* Destaque para nome da empresa */
+.company-name {
+    color: #daa520;
+    font-weight: 600;
+}
+
+/* Media Queries */
+@media (max-width: 1280px) {
+    .text-content .desktop,
+    .text-content .mobile {
+        text-align: justify;
     }
 }
 
+@media (max-width: 768px) {
+    #sobre {
+        padding: 1.5rem 0.5rem;
+    }
+
+    #sobre h1 {
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+    }
+
+    #sobre h2 {
+        margin-bottom: 1.5rem;
+    }
+
+    .text-one {
+        width: 95%;
+        padding: 2rem 1.5rem;
+        min-height: 40vh;
+    }
+
+    .text-content .desktop {
+        display: none;
+    }
+
+    .text-content .mobile {
+        display: block;
+        font-size: clamp(1.6rem, 3vw, 1.8rem);
+        line-height: 1.7;
+        text-align: justify;
+    }
+}
 
 @media (max-width: 480px) {
-    .text-one {
-        width: 90%;
-        max-height: 70%;
+    #sobre {
+        padding: 1rem 0.25rem;
     }
 
-    .text-one .mobile {
-        font-size: clamp(1.8rem, 2vw, 2.2rem);
-        line-height: 2.2rem;
-        max-width: 94%;
-        padding: 1rem;
+    .text-one {
+        width: 98%;
+        padding: 1.5rem 1rem;
+        border-radius: 1.5rem;
     }
+
+    .text-content .mobile {
+        font-size: clamp(1.4rem, 4vw, 1.6rem);
+        line-height: 1.6;
+        text-align: justify;
+    }
+}
+
+/* Scroll personalizado para o container de texto */
+.text-one::-webkit-scrollbar {
+    width: 8px;
+}
+
+.text-one::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.text-one::-webkit-scrollbar-thumb {
+    background: #daa520;
+    border-radius: 4px;
+}
+
+.text-one::-webkit-scrollbar-thumb:hover {
+    background: #b8941c;
 }

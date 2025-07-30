@@ -3,17 +3,18 @@
     flex-direction: column;
     width: 100%;
     background-color: #050b4b;
-    height: 20rem;
+    height: 25rem;
     position: relative;
     align-items: center;
     justify-content: center;
     padding: 2rem 0;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .banner h1 {
-    
-    font-size: 2.5rem;
+   color: var(--color-h1);
+   border-bottom: 2px solid var(--color-h1);
+    font-size: 3.5rem;
     margin-bottom: 2rem;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -21,66 +22,83 @@
 
 .scroller {
     width: 100%;
-
+    overflow: hidden;
     position: relative;
+    
+    mask: linear-gradient(90deg, transparent 0%, white 10%, white 90%, transparent 100%);
+    -webkit-mask: linear-gradient(90deg, transparent 0%, white 10%, white 90%, transparent 100%);
 }
 
 .rolling {
     display: flex;
-    gap: 5.5rem;
+    gap: 2rem;
     will-change: transform;
-    animation: scroll 20s linear infinite;
-    
-    
+    animation: scroll 25s linear infinite;
+    /* Largura calculada para comportar o conteúdo duplicado */
+    width: fit-content;
 }
 
 .rolling img {
     width: 12rem;
-    height: 12rem;
+    height: 10rem;
     object-fit: contain;
     flex-shrink: 0;
     border-radius: 8px;
-    padding: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    
+    padding: 0.1rem;
+    box-shadow: 0 2px 8px rgba(155, 10, 10, 0.1);
+    background-color: white;
 }
-/*ajustar aqui*/
+
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-186.5%);
+        /* Move exatamente metade da largura total (conteúdo original + duplicado) */
+        transform: translateX(-50%);
     }
 }
 
-/* Pausar animação ao hover para melhor UX */
+/* Pausar animação ao hover */
 .scroller:hover .rolling {
     animation-play-state: paused;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
+    .banner {
+        height: 16rem;
+        padding: 1.5rem 0;
+        overflow: hidden;
+    }
+    
     .banner h1 {
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .rolling {
-        gap: 3rem;
-        animation: scroll 30s linear infinite;
+        gap: 1.5rem;
+        animation-duration: 20s;
     }
     
     .rolling img {
-        width: 12rem;
-        height: 12rem;
-    }
-
-    @keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-418%);
+        width: 10rem;
+        height: 8rem;
     }
 }
+
+@media (max-width: 480px) {
+    .banner {
+        height: 14rem;
+    }
+    
+    .banner h1 {
+        font-size: 1.5rem;
+    }
+    
+    .rolling img {
+        width: 5rem;
+        height: 5rem;
+    }
 }
